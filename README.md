@@ -45,7 +45,7 @@ A shared love of food and desire to create something fun.
 
 ## Acknowledgements
 
- - [Spoonacular](https://spoonacular.com/food-api/docs)
+ - [Spoonacular](https://spoonacular.com/food-api/docs) The API used to source the original data
  - [README so](https://readme.so/)
  - [placeholder]()
 
