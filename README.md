@@ -3,7 +3,7 @@
 
 This is a site created with the idea of being able to find recipes for those days where you lack inspiration. A space for people to share their creations and leave feedback of their own experiences. Cooking can be hard. Why not make it just that little bit easier.
 
-Using our site you will be able to browse, search, add, and delete recipes that have been compiled for your use. We have 7 primary screens. Home, Sign In, Sign Up, Browse, Search, Details, Add, and Edit.
+Using our site you will be able to browse, search, add, and delete recipes that have been compiled for your use. We have 8 primary screens. Home, Sign In, Sign Up, Browse, Search, Details, Add, and Edit.
 
 
 ## Authors
