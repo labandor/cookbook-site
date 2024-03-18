@@ -19,28 +19,28 @@ Using our site you will be able to browse, search, add, and delete recipes that 
 Install my-project with npm
 
 ```bash
-  npm install my-project
-  cd my-project
+  npm i
 ```
+To install the dependencies
     
 ## Deployment
 
-To deploy this project run
+To deploy this project run:
 
 ```bash
-  npm run deploy
+  npm start
 ```
 
 
 ## FAQ
 
-#### Question 1
+#### How are you all so handsome?
 
-Answer 1
+We're unsure, just comes natural.
 
-#### Question 2
+#### What brought you to creating this site?
 
-Answer 2
+A shared love of food and desire to create something fun.
 
 
 ## Acknowledgements
