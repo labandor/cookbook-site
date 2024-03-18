@@ -14,6 +14,9 @@ Using our site you will be able to browse, search, add, and delete recipes that 
 - [Luke Bandeen](https://github.com/labandor)
 
 
+## Wireframe
+
+
 ## Installation
 
 Install my-project with npm
