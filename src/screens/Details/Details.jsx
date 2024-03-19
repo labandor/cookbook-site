@@ -3,17 +3,11 @@ import { getRecipe, deleteRecipe } from "../../services/recipes.js";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import './Details.css'
 
-
-// what is the route for this
-
-
-
 function Details() {
 
 	const [recipe, setRecipe] = useState({})
 	const [isLoaded, setLoaded] =useState(false);
-
-	let { id } = useParams()
+	const { id } = useParams()
 	let navigate = useNavigate()
 
 	const fetchRecipe = async () => {
@@ -29,6 +23,7 @@ function Details() {
 	const handleDelete = async (id) => {
 		await deleteRecipe(id)
 		fetchRecipe()
+		console.log("deleted");
 		navigate("/browse")
 	}
 
@@ -42,19 +37,31 @@ function Details() {
 				<img src={recipe.img} alt={recipe.title} />
     			</div>
       			<h2>{recipe.title}</h2>
-      			<p id="ingredients">{recipe.ingredients}</p>
+      			<p id="ingredients">{recipe.steps.map((step)=> {
+				let result = [];
+				for(let i = 0; i < step.ingredients.length; i++) {
+					if(!result.includes(step.ingredients[i])){
+						result.push(step.ingredients[i]);
+					}
+				}
+				return result;
+			}).toString()
+			}</p>
       			<p id="summary">{recipe.summary}</p>
-      			<p id="instructions">{recipe.instructions}</p>
+      			<p id="instructions">{recipe.steps.map((step)=> {
+				let result = [];
+				result.push(step.step);
+				return result;
+			}).toString()
+			}</p>
 			<div>
         			<Link to={`/recipe/${id}/edit`}>
          			 <button>EDIT</button>
         			</Link>
-        			<button onClick={handleDelete(recipe._id)}>DELETE</button>
+        			<button onClick={() => handleDelete(recipe._id)}>DELETE</button>
       			</div>
     		</div>
   	)
 }
-
-// i got this i know how to do this page
 
 export default Details

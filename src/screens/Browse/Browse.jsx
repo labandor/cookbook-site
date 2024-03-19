@@ -3,7 +3,6 @@ import './Browse.css';
 import { getRecipes } from '../../services/recipes.js';
 import { useState, useEffect } from 'react';
 import Search from '../../components/Search/Search.jsx';
-import Recipes from '../../components/Recipe/Recipe.jsx';
 
 function Browse() {
 	const [recipes, setRecipes] = useState([]);
@@ -20,7 +19,7 @@ function Browse() {
 
 	const handleSearch = (event) => {
 		const results = recipes.filter((recipe) =>
-	     		recipe.name.toLowerCase().includes(event.target.value.toLowerCase())
+	     		recipe.title.toLowerCase().includes(event.target.value.toLowerCase())
     		)
     		setSearchResult(results)
   	}
@@ -29,20 +28,20 @@ function Browse() {
 
 	return(
       		<div className='recipes'>
-		<Search onSubmit={handleSubmit} handleSearch={handleSearch} />
-        	{searchResult.map((recipe, index) => {
-          		return (
-            			<Recipe
-              				_id={recipe._id}
-              				title={recipe.title}
-              				img={recipe.img}
-              				key={index}
-					summary={recipe.summary}
-					ingredients={recipe.ingredients}
-					instructions={recipe.instructions}
-            			/>
-          		)
-        	})}
+			<Search onSubmit={handleSubmit} handleSearch={handleSearch} />
+        		{searchResult.map((recipe, index) => {
+          			return (
+            				<Recipe
+              					_id={recipe._id}
+              					title={recipe.title}
+              					image={recipe.image}
+						summary={recipe.summary}
+						steps={recipe.steps}
+						cuisines={recipe.cuisines}
+						sourceURL = {recipe.sourceURL}
+            				/>
+          			)
+        		})}
       		</div>
 	);
 }
