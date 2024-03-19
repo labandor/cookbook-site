@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getCodingJob, deleteCodingJob } from "../services/codingjobs.js";
+import { getRecipe, deleteRecipe } from "../services/codingjobs.js";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import '../styles/Detail.css'
 
@@ -8,64 +8,50 @@ import '../styles/Detail.css'
 
 
 
-function Details({state, fetchRecipe}) {
+function Details() {
 
-//   const [job, setJob] = useState({})
+	const [recipe, setRecipe] = useState({})
+	const [isloaded, setLoaded] =useState({});
 
-  let { id } = useParams()
-  let navigate = useNavigate()
+	let { id } = useParams()
+	let navigate = useNavigate()
 
-//   const fetchJob = async () => {
-//     const oneJob = await getCodingJob(id)
-//     setJob(oneJob)
-//   }
+	const fetchRecipe = async () => {
+		const oneRecipe = await getRecipe(id)
+		setRecipe(oneRecipe)
+	}
 
-//   useEffect(() => {
-//     fetchJob()
-//   }, [])
+	useEffect(() => {
+		fetchRecipe()
+	}, [])
 
-  const handleDelete = async (id) => {
-    await deleteRecipe(id)
-    fetchRecipe()
-    // navigate("/home")
-  }
+	const handleDelete = async (id) => {
+		await deleteRecipe(id)
+		fetchRecipe()
+		navigate("/browse")
+	}
 
-  return (
-    <div className='detail__container'>
-      
-      <div>
-        <h2>Image : </h2>
-        <p>{state?.img}</p>
-      </div>
-      <div>
-        <h2>Title:</h2> 
-        <p>{state?.title}</p>
-      </div>
-      <div>
-        <h2>Include Ingredients:</h2> 
-        <p>{state?.includeIngredients}</p>
-      </div>
-      <div>
-        <h2>Summary:</h2> 
-        <p>{state?.summary}</p>
-      </div>
-      <div>
-        <h2>Instructions Required:</h2> 
-        <p>{state.instructionsRequired}</p>
-      </div>
-      
+	if (!isLoaded) {
+		return <h1>Loading...</h1>
+	}
 
-      <div>
-        <Link to={`/jobs/${id}/edit`}>
-          <button>EDIT</button>
-        </Link>
-        <button onClick={() => {
-            
-            handleDelete(job._id)
-        }}>DELETE</button>
-      </div>
-    </div>
-  )
+	return (
+		<div className='detail__container'>
+			<div className="imgDiv">
+				<img src={recipe.img} alt=recipe.title />
+    			</div>
+      			<h2>{state.title}</p>
+      			<p id="ingredients">{state.ingredients}</p>
+      			<p id="summary">{state.summary}</p>
+      			<p id="instructions">{state.instructions}</p>
+			<div>
+        			<Link to={`/recipe/${id}/edit`}>
+         			 <button>EDIT</button>
+        			</Link>
+        			<button onClick={handleDelete(recipe._id)}>DELETE</button>
+      			</div>
+    		</div>
+  	)
 }
 
 // i got this i know how to do this page
