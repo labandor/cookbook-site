@@ -30,6 +30,7 @@ function App() {
 	  <Nav />
 	  <Routes>
 	  	<Route path="/" element={<Home />} />
+	  	<Route path="/about" element={<About />} />
 		<Route path="/sign-up" element={<SignUp setUser={setUser} />} />
         	<Route path="/sign-in" element={<SignIn setUser={setUser} />} />
         	<Route path="/sign-out" element={<SignOut setUser={setUser} />} />
