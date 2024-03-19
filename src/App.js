@@ -35,8 +35,12 @@ function App() {
         	<Route path="/sign-out" element={<SignOut setUser={setUser} />} />
 	  	<Route path="/browse" element={<Browse />} />
 	  	<Route path="/recipe/:id" element={<Details user={user} />} />
-	 	<Route path="/add-recipe" element={user ? <Create user={user} /> : <Navigate to="/sign-up" />} />
-	  	<Route path="/recipe/:id/edit" element={user ? <Edit user={user} /> : <Navigate to="/" />} />
+	 	<Route path="/add-recipe" element={
+			user ? <Create user={user} /> : <Navigate to="/sign-up" />
+		} />
+	  	<Route path="/recipe/:id/edit" element={
+			user ? <Edit user={user} /> : <Navigate to="/" />
+		} />
 	  </Routes>
     </div>
   );
