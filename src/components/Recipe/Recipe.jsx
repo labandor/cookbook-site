@@ -1,12 +1,12 @@
 import './Recipe.css';
 import { Link } from 'react-router-dom';
 
-const Recipe = (rec) => {
+const Recipe = (props) => {
     return (
        	<>
-            <Link className="recipe" to={`/recipe/${rec._id}`}>
-                <img className="recipe-image" src={rec.imgURL} alt={rec.name} />
-                <div className="recipe-name">{rec.name}</div>
+            <Link className="recipe" to={`/recipe/${props._id}`}>
+                <img className="recipe-image" src={props.image} alt={props.title} />
+                <div className="recipe-name">{props.title}</div>
             </Link>
         </>
     )
