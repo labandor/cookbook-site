@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { getRecipe, deleteRecipe } from "../services/codingjobs.js";
+import { getRecipe, deleteRecipe } from "../../services/recipes.js";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import '../styles/Detail.css'
+import './Details.css'
 
 
 // what is the route for this
@@ -11,7 +11,7 @@ import '../styles/Detail.css'
 function Details() {
 
 	const [recipe, setRecipe] = useState({})
-	const [isloaded, setLoaded] =useState({});
+	const [isLoaded, setLoaded] =useState(false);
 
 	let { id } = useParams()
 	let navigate = useNavigate()
@@ -39,12 +39,12 @@ function Details() {
 	return (
 		<div className='detail__container'>
 			<div className="imgDiv">
-				<img src={recipe.img} alt=recipe.title />
+				<img src={recipe.img} alt={recipe.title} />
     			</div>
-      			<h2>{state.title}</p>
-      			<p id="ingredients">{state.ingredients}</p>
-      			<p id="summary">{state.summary}</p>
-      			<p id="instructions">{state.instructions}</p>
+      			<h2>{recipe.title}</h2>
+      			<p id="ingredients">{recipe.ingredients}</p>
+      			<p id="summary">{recipe.summary}</p>
+      			<p id="instructions">{recipe.instructions}</p>
 			<div>
         			<Link to={`/recipe/${id}/edit`}>
          			 <button>EDIT</button>

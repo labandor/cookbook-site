@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createRecipe } from "../services/recipes.js";
+import { createRecipe } from "../../services/recipes.js";
 import './Create.css';
 
 function Create() {
@@ -16,7 +16,7 @@ function Create() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createRecipe(job);
+    await createRecipe(state);
     navigate("/recipes");
   };
 

@@ -1,37 +1,38 @@
 import Recipe from '../../components/Recipe/Recipe.jsx';
 import './Browse.css';
 import { getRecipes } from '../../services/recipes.js';
-import { useState, useReact } from 'react';
-import { Search, Recipes } from '../../components';
+import { useState, useEffect } from 'react';
+import Search from '../../components/Search/Search.jsx';
+import Recipes from '../../components/Recipe/Recipe.jsx';
 
 function Browse() {
 	const [recipes, setRecipes] = useState([]);
   	const [searchResult, setSearchResult] = useState([]);
 
   	useEffect(() => {
-  		const fetchProducts = async () => {
-      			const allProducts = await getProducts()
-      			setProducts(allProducts)
-      			setSearchResult(allProducts)
+  		const fetchRecipe = async () => {
+      			const allRecipes = await getRecipes()
+      			setRecipes(allRecipes)
+      			setSearchResult(allRecipes)
     		}
-    			fetchProducts()
+    			fetchRecipe()
   	}, []);
 
 	const handleSearch = (event) => {
-		const results = products.filter((product) =>
-	     		product.name.toLowerCase().includes(event.target.value.toLowerCase())
+		const results = recipes.filter((recipe) =>
+	     		recipe.name.toLowerCase().includes(event.target.value.toLowerCase())
     		)
     		setSearchResult(results)
-    		setApplySort(true)
   	}
 
+ 	const handleSubmit = (event) => event.preventDefault()
+
 	return(
-		<Search onSubmit={handleSubmit} handleSearch={handleSearch} />
-      		<Sort onSubmit={handleSubmit} handleSort={handleSort} />
       		<div className='recipes'>
+		<Search onSubmit={handleSubmit} handleSearch={handleSearch} />
         	{searchResult.map((recipe, index) => {
           		return (
-            			<Product
+            			<Recipe
               				_id={recipe._id}
               				title={recipe.title}
               				img={recipe.img}
