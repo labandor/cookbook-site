@@ -1,5 +1,5 @@
 import './Recipe.css';
-import { link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Recipe = (rec) => {
     return (
@@ -12,4 +12,4 @@ const Recipe = (rec) => {
     )
 }
 export default Recipe;
-}
+

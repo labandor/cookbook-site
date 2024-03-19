@@ -1,6 +1,6 @@
 import './App.css';
-import Nav from './components/Nav.jsx';
-import Footer from './components/Footer.jsx';
+import Nav from './components/Nav/Nav.jsx';
+import Footer from './components/Footer/Footer.jsx';
 import About from './screens/About/About.jsx';
 import Home from './screens/Home/Home.jsx';
 import Browse from './screens/Browse/Browse.jsx';

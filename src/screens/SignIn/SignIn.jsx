@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './SignIn.css'
-import { signIn } from '../../services/users.js'
+import { signIn } from '../../services/user.js'
 import { useNavigate } from 'react-router-dom'
 
 const SignIn = (props) => {
@@ -51,7 +51,7 @@ const SignIn = (props) => {
     }
   }
 
-  const { email, password } = form
+  const { username, password } = form
 
   return (
     <div className='form-container'>

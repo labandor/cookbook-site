@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getRecipe, editRecipe } from "../services/recipes.js";
+import { getRecipe, editRecipe } from "../../services/recipes.js";
 
 
 function Edit() {
