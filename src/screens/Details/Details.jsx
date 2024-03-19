@@ -17,13 +17,14 @@ function Details() {
 	let navigate = useNavigate()
 
 	const fetchRecipe = async () => {
-		const oneRecipe = await getRecipe(id)
-		setRecipe(oneRecipe)
+		const oneRecipe = await getRecipe(id);
+		setRecipe(oneRecipe);
+		setLoaded(true);
 	}
 
 	useEffect(() => {
 		fetchRecipe()
-	}, [])
+	}, [id])
 
 	const handleDelete = async (id) => {
 		await deleteRecipe(id)
