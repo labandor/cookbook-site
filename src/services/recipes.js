@@ -1,19 +1,17 @@
 import api from "./apiConfig.js";
 
-
-export let getRecipes = async (req, res) => {
+export const getRecipes = async (req, res) => {
     try{
-        let response = await api.get("/codingjobs")
+        let response = await api.get("/recipes")
         return response.data
     } catch (error) {
-        console.error(error)
-        res.status(500).json({ error: error.message }) 
+        console.error("error with getRecipes: ", error)
     }
 }
 
 export const getRecipe = async (id) => {
     try {
-      const response = await api.get(`/codingjobs/${id}`);
+      const response = await api.get(`/recipes/${id}`);
       return response.data;
     } catch (error) {
       console.error("Error Getting Recipe: ", error);
@@ -22,27 +20,27 @@ export const getRecipe = async (id) => {
 
 export const createRecipe = async (recipeData) => {
     try {
-      const response = await api.post("/codingjobs", recipeData);
+      const response = await api.post("/recipes", recipeData);
       return response.data;
     } catch (error) {
-      console.error(error);
+      console.error("Error Creating Recipe: ", error);
     }
   };
 
 export const editRecipe = async (id, recipeData) => {
     try {
-      const response = await api.put(`/codingjobs/${id}`, recipeData);
+      const response = await api.put(`/recipes/${id}`, recipeData);
       return response.data;
     } catch (error) {
-      console.error(error);
+      console.error("Error Editing Recipe: ", error);
     }
   };
 
 export const deleteRecipe = async (id) => {
     try {
-      const response = await api.delete(`/codingjobs/${id}`);
+      const response = await api.delete(`/recipes/${id}`);
       return response.data;
     } catch (error) {
-      console.error(error);
+      console.error("Error Deleting Recipe", error);
     }
   };
