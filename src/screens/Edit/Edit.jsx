@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getCodingJob, editCodingJob } from "../services/codingjobs.js";
+import { getRecipe, editRecipe } from "../services/recipes.js";
 
 
 function Edit() {
     const [state, setState] = useState({
         img: "",
         title: "",
-        includeIngredients: "",
+        ingredients: "",
         summary: "",
-        instructionsRequired: true,
+        instructions: "",
       });
 
   let { id } = useParams()
@@ -27,7 +27,7 @@ function Edit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await editRecipe(id, state);
-    // navigate(`/jobs/${id}`);
+    navigate(`/recipe/${id}`);
   };
 
   const handleChange = (e) => {
@@ -35,14 +35,6 @@ function Edit() {
     setState((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
-  };
-
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [name]: checked,
     }));
   };
 
@@ -55,6 +47,7 @@ function Edit() {
             placeholder="img"
             name="img"
             value={state.img}
+	    required
             onChange={handleChange}
         />
 
@@ -63,14 +56,16 @@ function Edit() {
           placeholder="title"
           name="title"
           value={state.title}
+	  required
           onChange={handleChange}
         />
 
         <input
           type="text"
-          placeholder="include Ingredients"
-          name="include Ingredients"
-          value={state.includeIngredients}
+          placeholder="Ingredients"
+          name="ingredients"
+          value={state.ingredients}
+	  required
           onChange={handleChange}
         />
 
@@ -79,21 +74,19 @@ function Edit() {
           placeholder="summary"
           name="summary"
           value={state.summary}
+	  required
           onChange={handleChange}
         />
-        <div>
-          <label htmlFor="relocation-box">
-            Instructions Required
-            <input
-              id="instructions required"
-              type="checkbox"
-              name="instructions required"
-              checked={state.instructionsRequired}
-              onChange={handleCheckboxChange}
-            />
-          </label>
-        </div>
-        
+
+        <input
+          id="instructions required"
+          type="checkbox"
+          name="instructions required"
+	  checked={state.instructions}
+	  required
+          onChange={handleChange}
+        />
+
         <button type="submit">Submit</button>
       </form>
     </div>

@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-// import { createCodingJob } from "../services/codingjobs.js";
+import { useNavigate } from "react-router-dom";
+import { createRecipe } from "../services/recipes.js";
+import './Create.css';
 
 function Create() {
   const [state, setState] = useState({
     img: "",
     title: "",
-    includeIngredients: "",
+    ingredients: "",
     summary: "",
-    instructionsRequired: true,
+    instructions: ""
   });
 
   let navigate = useNavigate();
@@ -16,7 +17,7 @@ function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await createRecipe(job);
-    // navigate("/Jobs");
+    navigate("/recipes");
   };
 
   const handleChange = (e) => {
@@ -24,14 +25,6 @@ function Create() {
     setState((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
-  };
-
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [name]: checked,
     }));
   };
 
@@ -45,6 +38,7 @@ function Create() {
             placeholder="img"
             name="img"
             value={state.img}
+	    required
             onChange={handleChange}
         />
 
@@ -53,14 +47,16 @@ function Create() {
           placeholder="title"
           name="title"
           value={state.title}
+	  required
           onChange={handleChange}
         />
 
         <input
           type="text"
-          placeholder="include Ingredients"
-          name="include Ingredients"
-          value={state.includeIngredients}
+          placeholder="Ingredients"
+          name="ingredients"
+          value={state.ingredients}
+	  required
           onChange={handleChange}
         />
 
@@ -69,21 +65,17 @@ function Create() {
           placeholder="summary"
           name="summary"
           value={state.summary}
+	  required
           onChange={handleChange}
         />
-        <div>
-          <label htmlFor="relocation-box">
-            Instructions Required
-            <input
-              id="instructions required"
-              type="checkbox"
-              name="instructions required"
-              checked={state.instructionsRequired}
-              onChange={handleCheckboxChange}
-            />
-          </label>
-        </div>
-        
+        <input
+          id="instructions"
+          type="text"
+          name="instructions"
+          value={state.instructions}
+	  required
+          onChange={handleChange}
+        />
         <button type="submit">Submit</button>
       </form>
     </div>
