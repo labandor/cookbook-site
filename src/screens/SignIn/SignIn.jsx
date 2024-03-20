@@ -26,6 +26,7 @@ const SignIn = (props) => {
     try {
       const user = await signIn(form)
       setUser(user)
+      console.log(user);
       navigate('/')
     } catch (error) {
       console.error(error)
