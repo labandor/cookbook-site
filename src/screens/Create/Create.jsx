@@ -5,11 +5,14 @@ import './Create.css';
 
 function Create() {
   const [state, setState] = useState({
-    img: "",
+    image: "",
     title: "",
-    ingredients: "",
+    cuisines: [],
+    steps: [{
+	step: "",
+	ingredients: [],
+    }],
     summary: "",
-    instructions: ""
   });
 
   let navigate = useNavigate();
@@ -17,7 +20,7 @@ function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await createRecipe(state);
-    navigate("/recipes");
+    navigate("/browse");
   };
 
   const handleChange = (e) => {
@@ -36,8 +39,8 @@ function Create() {
         <input
             type="text"
             placeholder="img"
-            name="img"
-            value={state.img}
+            name="image"
+            value={state.image}
 	    required
             onChange={handleChange}
         />
@@ -54,8 +57,8 @@ function Create() {
         <input
           type="text"
           placeholder="Ingredients"
-          name="ingredients"
-          value={state.ingredients}
+          name="steps[0].ingredients[0]"
+          value={state.steps[0].ingredients[0]}
 	  required
           onChange={handleChange}
         />
@@ -69,10 +72,10 @@ function Create() {
           onChange={handleChange}
         />
         <input
-          id="instructions"
           type="text"
-          name="instructions"
-          value={state.instructions}
+	  placeholder="instructions"
+          name="steps[0].step"
+          value={state.steps[0].step}
 	  required
           onChange={handleChange}
         />

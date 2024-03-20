@@ -21,6 +21,7 @@ export const getRecipe = async (id) => {
 export const createRecipe = async (recipeData) => {
     try {
       const response = await api.post("/recipies", recipeData);
+      console.log("im here");
       return response.data;
     } catch (error) {
       console.error("Error Creating Recipe: ", error);
