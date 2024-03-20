@@ -34,7 +34,7 @@ function Details() {
 	return (
 		<div className='detail__container'>
 			<div className="imgDiv">
-				<img src={recipe.img} alt={recipe.title} />
+				<img src={recipe.image} alt={recipe.title} />
     			</div>
       			<h2>{recipe.title}</h2>
       			<p id="ingredients">{recipe.steps.map((step)=> {
