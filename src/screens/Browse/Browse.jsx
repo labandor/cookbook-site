@@ -33,6 +33,7 @@ function Browse() {
           			return (
             				<Recipe
               					_id={recipe._id}
+						key={index}
               					title={recipe.title}
               					image={recipe.image}
 						summary={recipe.summary}
