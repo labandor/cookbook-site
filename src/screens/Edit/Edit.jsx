@@ -5,11 +5,14 @@ import { getRecipe, editRecipe } from "../../services/recipes.js";
 
 function Edit() {
     const [state, setState] = useState({
-        img: "",
-        title: "",
-        ingredients: "",
-        summary: "",
-        instructions: "",
+        image: "",
+    title: "",
+    cuisines: [],
+    steps: [{
+	step: "",
+	ingredients: [],
+    }],
+    summary: "",
       });
 
   let { id } = useParams()
