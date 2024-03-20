@@ -1,48 +1,57 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createRecipe } from "../../services/recipes.js";
-import './Create.css';
+import "./Create.css";
 
 function Create() {
   const [state, setState] = useState({
     image: "",
     title: "",
     cuisines: [],
-    steps: [{
-	step: "",
-	ingredients: [],
-    }],
     summary: "",
   });
+
+  const [step, setStep] = useState("")
+  const [ingredient, setIngredient] = useState("")
 
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createRecipe(state);
+
+    const updatedState = {
+      ...state,
+      steps: [
+        {
+          step: step,
+          ingredients: [ingredient]
+        }
+      ]
+    }
+
+    await createRecipe(updatedState);
     navigate("/browse");
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+      setState((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
   };
 
   return (
     <div>
       <h1>Add a Recipe in our Cook Book!</h1>
       <form onSubmit={handleSubmit}>
-
         <input
-            type="text"
-            placeholder="image url"
-            name="image"
-            value={state.image}
-	    required
-            onChange={handleChange}
+          type="text"
+          placeholder="image url"
+          name="image"
+          value={state.image}
+          required
+          onChange={handleChange}
         />
 
         <input
@@ -50,17 +59,17 @@ function Create() {
           placeholder="Title"
           name="title"
           value={state.title}
-	  required
+          required
           onChange={handleChange}
         />
 
         <input
           type="text"
           placeholder="Ingredients"
-          name="steps[0].ingredients[0]"
-          value={state.steps[0].ingredients[0]}
-	  required
-          onChange={handleChange}
+          name="ingredient"
+          value={ingredient}
+          required
+          onChange={(e) => setIngredient(e.target.value)}
         />
 
         <input
@@ -68,16 +77,16 @@ function Create() {
           placeholder="Summary"
           name="summary"
           value={state.summary}
-	  required
+          required
           onChange={handleChange}
         />
         <input
           type="text"
-	  placeholder="Instructions"
-          name="steps[0].step"
-          value={state.steps[0].step}
-	  required
-          onChange={handleChange}
+          placeholder="Instructions"
+          name="step"
+          value={step}
+          required
+          onChange={(e) => setStep(e.target.value)}
         />
         <button type="submit">Submit</button>
       </form>
