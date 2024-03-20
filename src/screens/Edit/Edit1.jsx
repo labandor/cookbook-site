@@ -3,20 +3,24 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getRecipe, editRecipe } from "../../services/recipes.js";
 
 function Edit() {
-  const [state, setState] = useState({
+ const [state, setState] = useState({
     image: "",
     title: "",
     cuisines: [],
-    steps: [
-      {
-        step: "",
-        ingredients: [],
-      },
-    ],
     summary: "",
+   /* steps: [
+	    {
+		    step:"",
+		    ingredients:[],
+	    }
+    ],*/
   });
 
-  const ingredients = state.steps.map((step) => {
+  const [step, setStep] = useState("")
+  const [ingredient, setIngredient] = useState("")
+  
+	/*
+  let ingredients = state.steps.map((step) => {
     let result = [];
     for (let i = 0; i < step.ingredients.length; i++) {
       if (!result.includes(step.ingredients[i])) {
@@ -24,15 +28,16 @@ function Edit() {
       }
     }
     return result;
-  });
+  }).toString();
 
-  const instructions = state.steps
-    .map((step) => {
+  
+
+  let instructions = state.steps.map((step) => {
       let result = [];
       result.push(step.step);
       return result;
-    })
-    .toString();
+    }).toString();
+*/
 
   let { id } = useParams();
   let navigate = useNavigate();
@@ -40,36 +45,50 @@ function Edit() {
   async function fetchRecipe() {
     const oneRecipe = await getRecipe(id);
     setState(oneRecipe);
+    setStep(oneRecipe.steps.map((step1) => {
+	    let result = [];
+	    result.push(step1.step);
+	    return result
+    }).toString());
+
+    setIngredient(oneRecipe.steps.map((step1) => {
+	    let result = [];
+	    for(let i = 0; i < step1.ingredients.length; i++) {
+		    if(!result.includes(step.ingredients[i])) {
+			    result.push(step.ingredients[i]);
+		    }
+	    }
+	    return result;
+    }).toString());
   }
 
   useEffect(() => {
     fetchRecipe();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await editRecipe(id, state);
-    navigate(`/recipe/${id}`);
-  };
+    const handleSubmit = async (e) => {
+   	 e.preventDefault();
+
+   	 const updatedState = {
+   	   ...state,
+   	   steps: [
+  	      {
+  	        step: step,
+  	        ingredients: [ingredient]
+ 	       }
+ 	     ]
+ 	   }
+
+	    await editRecipe(updatedState);
+	    navigate(`/recipe/${id}`);
+   }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name !== "ingredients" || name !== "instructions") {
-      setState((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    } else if (name === "ingredients") {
-      setState((prevState) => ({
-        ...prevState,
-        [state.steps[0].ingredients[0]]: value,
-      }));
-    } else {
-      setState((prevState) => ({
-        ...prevState,
-        [state.steps[0].step]: value,
-      }));
-    }
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
@@ -78,7 +97,7 @@ function Edit() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="img"
+          placeholder="Image URL"
           name="image"
           value={state.image}
           required
@@ -88,7 +107,7 @@ function Edit() {
         <input
           type="text"
           placeholder="title"
-          name="title"
+          name="Title"
           value={state.title}
           required
           onChange={handleChange}
@@ -97,16 +116,18 @@ function Edit() {
         <input
           type="text"
           placeholder="Ingredients"
-          name="ingredients"
-          value={ingredients}
+          name="ingredient"
+          value={ingredient}
           required
-          onChange={handleChange}
+	  onChange={(e) => {
+		  setIngredient(e.target.value)
+	  }}
         />
 
         <input
           type="text"
           placeholder="summary"
-          name="summary"
+          name="Summary"
           value={state.summary}
           required
           onChange={handleChange}
@@ -114,10 +135,13 @@ function Edit() {
 
         <input
           type="text"
-          name="instructions"
-          value={instructions}
+	  placeholder="Instructions"
+          name="step"
+          value={step}
           required
-          onChange={handleChange}
+	  onChange={(e) => {
+		  setStep(e.target.value)
+	  }}
         />
 
         <button type="submit">Submit</button>
