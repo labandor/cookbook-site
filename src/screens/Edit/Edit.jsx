@@ -2,43 +2,75 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getRecipe, editRecipe } from "../../services/recipes.js";
 
-
 function Edit() {
-    const [state, setState] = useState({
-        image: "",
+  const [state, setState] = useState({
+    image: "",
     title: "",
     cuisines: [],
-    steps: [{
-	step: "",
-	ingredients: [],
-    }],
+    steps: [
+      {
+        step: "",
+        ingredients: [],
+      },
+    ],
     summary: "",
-      });
+  });
 
-  let { id } = useParams()
+  const ingredients = state.steps.map((step) => {
+    let result = [];
+    for (let i = 0; i < step.ingredients.length; i++) {
+      if (!result.includes(step.ingredients[i])) {
+        result.push(step.ingredients[i]);
+      }
+    }
+    return result;
+  });
+
+  const instructions = state.steps
+    .map((step) => {
+      let result = [];
+      result.push(step.step);
+      return result;
+    })
+    .toString();
+
+  let { id } = useParams();
   let navigate = useNavigate();
 
   async function fetchRecipe() {
-    const oneRecipe = await getRecipe(id)
-    setState(oneRecipe)
+    const oneRecipe = await getRecipe(id);
+    setState(oneRecipe);
   }
 
   useEffect(() => {
-    fetchRecipe()
-  }, [])
+    fetchRecipe();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await editRecipe(id, state);
-    navigate(`/recipe/${id}`);
+	  console.log("sup");
+    navigate(`/browse`);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if (name !== "ingredients" || name !== "instructions") {
+      setState((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    } else if (name === "ingredients") {
+      setState((prevState) => ({
+        ...prevState,
+        [state.steps[0].ingredients[0]]: value,
+      }));
+    } else {
+      setState((prevState) => ({
+        ...prevState,
+        [state.steps[0].step]: value,
+      }));
+    }
   };
 
   return (
@@ -46,12 +78,12 @@ function Edit() {
       <h1>Edit A Recipe!</h1>
       <form onSubmit={handleSubmit}>
         <input
-            type="text"
-            placeholder="img"
-            name="img"
-            value={state.img}
-	    required
-            onChange={handleChange}
+          type="text"
+          placeholder="img"
+          name="image"
+          value={state.image}
+          required
+          onChange={handleChange}
         />
 
         <input
@@ -59,7 +91,7 @@ function Edit() {
           placeholder="title"
           name="title"
           value={state.title}
-	  required
+          required
           onChange={handleChange}
         />
 
@@ -67,8 +99,8 @@ function Edit() {
           type="text"
           placeholder="Ingredients"
           name="ingredients"
-          value={state.ingredients}
-	  required
+          value={ingredients}
+          required
           onChange={handleChange}
         />
 
@@ -77,16 +109,15 @@ function Edit() {
           placeholder="summary"
           name="summary"
           value={state.summary}
-	  required
+          required
           onChange={handleChange}
         />
 
         <input
-          id="instructions required"
-          type="checkbox"
-          name="instructions required"
-	  checked={state.instructions}
-	  required
+          type="text"
+          name="instructions"
+          value={instructions}
+          required
           onChange={handleChange}
         />
 

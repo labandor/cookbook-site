@@ -8,12 +8,16 @@ function Create() {
     image: "",
     title: "",
     cuisines: [],
-    steps: [{
-	step: "",
-	ingredients: [],
-    }],
+    steps: [
+	    {
+		step: "",
+		ingredients: [],
+	    }
+    ],
     summary: "",
   });
+
+	let step1 = state.steps[0].step;
 
   let navigate = useNavigate();
 
@@ -74,8 +78,8 @@ function Create() {
         <input
           type="text"
 	  placeholder="Instructions"
-          name="steps[0].step"
-          value={state.steps[0].step}
+          name="step1"
+          value={step1}
 	  required
           onChange={handleChange}
         />
