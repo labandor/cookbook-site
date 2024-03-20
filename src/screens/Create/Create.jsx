@@ -38,7 +38,7 @@ function Create() {
 
         <input
             type="text"
-            placeholder="img"
+            placeholder="image url"
             name="image"
             value={state.image}
 	    required
@@ -47,7 +47,7 @@ function Create() {
 
         <input
           type="text"
-          placeholder="title"
+          placeholder="Title"
           name="title"
           value={state.title}
 	  required
@@ -65,7 +65,7 @@ function Create() {
 
         <input
           type="text"
-          placeholder="summary"
+          placeholder="Summary"
           name="summary"
           value={state.summary}
 	  required
@@ -73,7 +73,7 @@ function Create() {
         />
         <input
           type="text"
-	  placeholder="instructions"
+	  placeholder="Instructions"
           name="steps[0].step"
           value={state.steps[0].step}
 	  required
