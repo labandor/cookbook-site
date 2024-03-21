@@ -40,7 +40,7 @@ const Nav = ({ user }) => {
       <div className="nav">
         <div className="left-links">
           {alwaysOptions}
-          {user ? authenticatedOptions(user) : unauthenticatedOptions} {/* Moved authenticatedOptions here */}
+          {user ? authenticatedOptions(user) : unauthenticatedOptions} 
         </div>
         <div className="right-links">
           <div className="dropdown-container">
