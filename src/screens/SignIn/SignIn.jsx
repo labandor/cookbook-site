@@ -84,7 +84,6 @@ const SignIn = (props) => {
         />
         {renderError()}
       </form>
-	{signUp()}
     </div>
   )
 }
