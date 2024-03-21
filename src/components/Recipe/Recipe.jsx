@@ -7,6 +7,7 @@ const Recipe = (props) => {
             <Link className="recipe" to={`/recipe/${props._id}`}>
                 <img className="recipe-image" src={props.image} alt={props.title} />
                 <div className="recipe-name">{props.title}</div>
+	    	<div className="cuisine">{props.cuisine}</div>
             </Link>
         </>
     )
