@@ -52,13 +52,14 @@ function Details() {
 	}
 */
 	return (
+		<div className='details-page'>
 		<div className='detail__container'>
 			<div className="imgDiv">
 				<img src={recipe.image} alt={recipe.title} />
     			</div>
       			<h2>{recipe.title}</h2>
       			<ul id="ingredients">{recipe.ingredients.map((ingredient) => {
-				return <li>{ingredient}</li>
+				return <li className='recipe-list'>{ingredient}</li>
 			})}</ul>
       			<p id="summary">{recipe.summary}</p>
       			<ul id="instructions">{recipe.steps.map((step)=> {
@@ -71,6 +72,7 @@ function Details() {
         			<button onClick={() => handleDelete(recipe._id)}>DELETE</button>
       			</div>
     		</div>
+			</div>
   	)
 }
 
