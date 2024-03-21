@@ -52,6 +52,12 @@ const SignIn = (props) => {
     }
   }
 
+  const signUp = () => {
+	  return(
+		  <button className="SignUpBtn" onClick={()=>navigate('/sign-up')}>Sign Up</button>
+	  );
+  }
+
   const { username, password } = form
 
   return (
@@ -78,6 +84,7 @@ const SignIn = (props) => {
         />
         {renderError()}
       </form>
+	{signUp()}
     </div>
   )
 }
