@@ -1,0 +1,29 @@
+/* Nav.css */
+.nav {
+    background-color: #FF6F61;
+    padding: 10px 20px;
+  }
+  
+  .Home {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+  }
+  
+  .link {
+    color: #fff;
+    font-size: 16px;
+    margin-right: 20px;
+    text-decoration: none;
+  }
+  
+  .link.welcome {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
