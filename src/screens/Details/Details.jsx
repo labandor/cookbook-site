@@ -30,30 +30,40 @@ function Details() {
 	if (!isLoaded) {
 		return <h1>Loading...</h1>
 	}
+/*
+	const ingredients = () => {
+		let temp = recipe.steps.map((step)=> {
+			let result = [];
+			for(let i = 0; i < step.ingredients.length; i++) {
+				if(!result.includes(step.ingredients[i])){
+					result.push(step.ingredients[i]);
+				}
+			}
+			return result;
+		});
 
+		return (
+			<ul>{temp.map((temp1) => {
+					return <li>{temp1}</li>
+				}
+			}
+			</ul>
+		);
+	}
+*/
 	return (
 		<div className='detail__container'>
 			<div className="imgDiv">
 				<img src={recipe.image} alt={recipe.title} />
     			</div>
       			<h2>{recipe.title}</h2>
-      			<p id="ingredients">{recipe.steps.map((step)=> {
-				let result = [];
-				for(let i = 0; i < step.ingredients.length; i++) {
-					if(!result.includes(step.ingredients[i])){
-						result.push(step.ingredients[i]);
-					}
-				}
-				return result;
-			}).toString()
-			}</p>
+      			<ul id="ingredients">{recipe.ingredients.map((ingredient) => {
+				return <li>{ingredient}</li>
+			})}</ul>
       			<p id="summary">{recipe.summary}</p>
-      			<p id="instructions">{recipe.steps.map((step)=> {
-				let result = [];
-				result.push(step.step);
-				return result;
-			}).toString()
-			}</p>
+      			<ul id="instructions">{recipe.steps.map((step)=> {
+				return <li>{step}</li>
+			})}</ul>
 			<div>
         			<Link to={`/recipe/${id}/edit`}>
          			 <button>EDIT</button>
