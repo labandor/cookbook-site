@@ -7,32 +7,10 @@ function Edit() {
     image: "",
     title: "",
     cuisines: [],
-    steps: [
-      {
-        step: "",
-        ingredients: [],
-      },
-    ],
+    steps: [],
+    ingredients: [],
     summary: "",
   });
-
-  const ingredients = state.steps.map((step) => {
-    let result = [];
-    for (let i = 0; i < step.ingredients.length; i++) {
-      if (!result.includes(step.ingredients[i])) {
-        result.push(step.ingredients[i]);
-      }
-    }
-    return result;
-  });
-
-  const instructions = state.steps
-    .map((step) => {
-      let result = [];
-      result.push(step.step);
-      return result;
-    })
-    .toString();
 
   let { id } = useParams();
   let navigate = useNavigate();
@@ -54,21 +32,24 @@ function Edit() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name !== "ingredients" || name !== "instructions") {
+    if (name !== "ingredients" && name !== "steps") {
       setState((prevState) => ({
         ...prevState,
         [name]: value,
       }));
+      console.log(name)
     } else if (name === "ingredients") {
       setState((prevState) => ({
         ...prevState,
-        [state.steps[0].ingredients[0]]: value,
-      }));
+        [name]: value.split(","),
+      }))
+      console.log(state);
     } else {
       setState((prevState) => ({
         ...prevState,
-        [state.steps[0].step]: value,
+        [name]: value.split("."),
       }));
+      console.log(state)
     }
   };
 
@@ -98,7 +79,7 @@ function Edit() {
           type="text"
           placeholder="Ingredients"
           name="ingredients"
-          value={ingredients}
+          value={state.ingredients.toString()}
           required
           onChange={handleChange}
         />
@@ -114,8 +95,8 @@ function Edit() {
 
         <input
           type="text"
-          name="instructions"
-          value={instructions}
+          name="steps"
+          value={state.steps.toString()}
           required
           onChange={handleChange}
         />

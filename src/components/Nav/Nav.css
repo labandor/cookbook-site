@@ -1,7 +1,10 @@
-/* Nav.css */
-.nav {
+
+
+   .nav {
     background-color: #FF6F61;
     padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; 
   }
   
   .Home {
