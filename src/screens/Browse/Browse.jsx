@@ -18,9 +18,12 @@ function Browse() {
   	}, []);
 
 	const handleSearch = (event) => {
-		const results = recipes.filter((recipe) =>
-	     		recipe.title.toLowerCase().includes(event.target.value.toLowerCase())
-    		)
+		const results = recipes.filter((recipe) => {
+			return (
+	     			recipe.title.toLowerCase().includes(event.target.value.toLowerCase()) || recipe.cuisine.toLowerCase().includes(event.target.value.toLowerCase())
+			)
+		})
+
     		setSearchResult(results)
   	}
 
@@ -38,7 +41,7 @@ function Browse() {
               					image={recipe.image}
 						summary={recipe.summary}
 						steps={recipe.steps}
-						cuisines={recipe.cuisines}
+						cuisine={recipe.cuisine}
 						sourceURL = {recipe.sourceURL}
             				/>
           			)
