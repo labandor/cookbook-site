@@ -1,71 +1,58 @@
-// import './Nav.css'
-// import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react';
+import './Nav.css';
+import { NavLink } from 'react-router-dom';
 
-// const authenticatedOptions = (
-//     <>
-//         <NavLink className="link" to="/add-recipe">Add Recipe</NavLink>
-//         <NavLink className="link" to="/sign-out">Sign Out</NavLink>
-//     </>
-// )
-// const unauthenticatedOptions = (
-//     <>
-//         <NavLink className="link" to="/sign-in">Sign In</NavLink>
-//     </>
-// )
-// const alwaysOptions = (
-//     <>
-//         <NavLink className="link" to="/browse">Browse</NavLink>
-//     </>
-// )
-// const Nav = ({ user }) => {
-//         return (
-//             <nav>
-//                 <div className="nav">
-//                     <NavLink className="Home" to="/">Home</NavLink>
-//                     <div className="links">
-//                         {user && <div className="link welcome">Welcome, {user.username}</div>}
-//                         {alwaysOptions}
-//                         {user ? authenticatedOptions : unauthenticatedOptions}
-//                     </div>
-//                 </div>
-//             </nav>
-//         )
-// }
-// export default Nav
+const AuthDropdown = ({ user }) => (
+  <div className="dropdown">
+    {!user && <NavLink className="link" to="/sign-in">Sign In</NavLink>}
+    {!user && <NavLink className="link" to="/sign-up">Sign Up</NavLink>}
+    {user && <NavLink className="link" to="/sign-out">Sign Out</NavLink>}
+  </div>
+);
 
-
-// Nav.js
-import './Nav.css'
-import { NavLink } from 'react-router-dom'
-
-const authenticatedOptions = (
-    <>
-        <NavLink className="link" to="/add-recipe">Add Recipe</NavLink>
-        <NavLink className="link" to="/sign-out">Sign Out</NavLink>
-    </>
-)
-const unauthenticatedOptions = (
-    <>
-        <NavLink className="link" to="/sign-in">Sign In</NavLink>
-    </>
-)
 const alwaysOptions = (
-    <>
-        <NavLink className="link" to="/browse">Browse</NavLink>
-    </>
-)
+  <>
+    <NavLink className="link" to="/">Home</NavLink>
+    <NavLink className="link" to="/browse">Browse</NavLink>
+  </>
+);
+
+const authenticatedOptions = (user) => (
+  <>
+    {user && <NavLink className="link" to="/add-recipe">Add Recipe</NavLink>}
+  </>
+);
+
+const unauthenticatedOptions = (
+  <>
+  </>
+);
+
 const Nav = ({ user }) => {
-        return (
-            <nav>
-                <div className="nav">
-                    <NavLink className="Home" to="/">Home</NavLink>
-                    <div className="links">
-                        {user && <div className="link welcome">Welcome, {user.username}</div>}
-                        {alwaysOptions}
-                        {user ? authenticatedOptions : unauthenticatedOptions}
-                    </div>
-                </div>
-            </nav>
-        )
-}
-export default Nav
+  const [showAuthDropdown, setShowAuthDropdown] = useState(false);
+
+  const toggleAuthDropdown = () => {
+    setShowAuthDropdown(!showAuthDropdown);
+  };
+
+  return (
+    <nav>
+      <div className="nav">
+        <div className="left-links">
+          {alwaysOptions}
+          {user ? authenticatedOptions(user) : unauthenticatedOptions} {/* Moved authenticatedOptions here */}
+        </div>
+        <div className="right-links">
+          <div className="dropdown-container">
+            <NavLink className="link" to="#" onClick={toggleAuthDropdown}>My Account</NavLink>
+            {showAuthDropdown && (
+              <AuthDropdown user={user} />
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Nav;
