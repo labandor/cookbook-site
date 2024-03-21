@@ -47,7 +47,7 @@ function Edit() {
     } else {
       setState((prevState) => ({
         ...prevState,
-        [name]: value.split(","),
+        [name]: value.split("."),
       }));
       console.log(state)
     }
