@@ -7,38 +7,46 @@ function Create() {
   const [state, setState] = useState({
     image: "",
     title: "",
-    cuisines: [],
+    cuisine: "",
     summary: "",
+    steps: [],
+    ingredients: [],
   });
-
-  const [step, setStep] = useState("")
-  const [ingredient, setIngredient] = useState("")
 
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const updatedState = {
-      ...state,
-      steps: [
-        {
-          step: step,
-          ingredients: [ingredient]
-        }
-      ]
-    }
-
-    await createRecipe(updatedState);
+	console.log(state.steps)
+    await createRecipe(state);
     navigate("/browse");
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-      setState((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
+    	  const { name, value } = e.target;
+	  if(name === "steps") {
+		  setState((prevState) => ({
+			  ...prevState,
+			  [name]: value.split("."),
+		  }));
+
+			 // console.log(name, value.split("."));
+		  console.log(name, value)}
+	  else if(name === "ingredients"){
+		setState((prevState) => ({
+			  ...prevState,
+			  [name]: value.split(","),
+		  }));
+
+			  //console.log(name, value.split(","));
+	  }
+	   else {
+      		setState((prevState) => ({
+        		...prevState,
+        		[name]: value,
+      		}));
+	  }
+	  
   };
 
   return (
@@ -53,7 +61,14 @@ function Create() {
           required
           onChange={handleChange}
         />
-
+	<input
+	  type="text"
+	  placeholder="Cuisine"
+	  name="cuisine"
+	  value={state.cuisine}
+	  required
+	  onChange={handleChange}
+	/>
         <input
           type="text"
           placeholder="Title"
@@ -66,10 +81,10 @@ function Create() {
         <input
           type="text"
           placeholder="Ingredients"
-          name="ingredient"
-          value={ingredient}
+          name="ingredients"
+          value={state.ingredients.toString()}
           required
-          onChange={(e) => setIngredient(e.target.value)}
+          onChange={handleChange}
         />
 
         <input
@@ -83,10 +98,10 @@ function Create() {
         <input
           type="text"
           placeholder="Instructions"
-          name="step"
-          value={step}
+          name="steps"
+          value={state.steps.join(".")}
           required
-          onChange={(e) => setStep(e.target.value)}
+          onChange={handleChange}
         />
         <button type="submit">Submit</button>
       </form>
