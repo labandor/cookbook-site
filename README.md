@@ -14,7 +14,12 @@ Using our site you will be able to browse, search, add, and delete recipes that 
 
 
 ## Wireframe
-
+![Alt text](<Screenshot from 2024-03-22 16-13-26.png>)
+![Alt text](<Screenshot from 2024-03-22 16-07-29.png>)
+![Alt text](<Screenshot from 2024-03-22 16-12-37-1.png>)
+![Alt text](<Screenshot from 2024-03-22 16-14-14.png>)
+![Alt text](<Screenshot from 2024-03-22 16-07-37.png>)
+![Alt text](<Screenshot from 2024-03-22 16-07-34.png>)
 
 ## Installation
 
