@@ -90,7 +90,7 @@ function Browse() {
   return (
     <div className="browse-container">
       <header>
-        {/* Your navigation bar */}
+        {/* Your navigation bar */} 
       </header>
       <div className="search-container">
         <Search onSubmit={handleSubmit} handleSearch={handleSearch} />
