@@ -17,7 +17,7 @@ Chef Nikoloz Gogoladze, trained in the heart of Georgia's culinary traditions, i
 			</div>
 			<div id="Luke">
 				<h2>Luke Bandeen</h2>
-				<p> Luke is an Software Engineer hailing from London, England. Often finds himself looking for recipes to make something new. He is also in awe of the number of Bookers Michelin stars.</p>
+				<p>Here for the ride</p>
 			</div>
 		</div>
 	);
