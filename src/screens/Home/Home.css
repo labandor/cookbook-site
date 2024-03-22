@@ -1,9 +1,18 @@
 .home {
     display: flex;
     justify-content: center;
+    flex-direction:row-reverse;
     height: 95.3vh;
     /* width:150vh; */
     background: url("https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=3732&auto=format&f[…]3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+h1 {
+	display:flex;
+	flex-direction:row-reverse;
+}
+
+p {
+}
