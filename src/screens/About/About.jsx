@@ -13,13 +13,9 @@ function About() {
 				<h2>Aleksandre Chkhikvishvili</h2>
 				<p> input here </p>
 			</div>
-			<div id="Albert">
-				<h2>Albert Rocha</h2>
-				<p> place here </p>
-			</div>
 			<div id="Luke">
 				<h2>Luke Bandeen</h2>
-				<p> plop here </p>
+				<p> Luke is an Software Engineer hailing from London, England. Often finds himself looking for recipes to make something new. He is also in awe of the number of Booksers Michelin stars.</p>
 			</div>
 		</div>
 	);
