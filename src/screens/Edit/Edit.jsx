@@ -96,7 +96,7 @@ function Edit() {
         <input
           type="text"
           name="steps"
-          value={state.steps.toString()}
+          value={state.steps.join(".")}
           required
           onChange={handleChange}
         />
