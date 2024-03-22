@@ -9,7 +9,7 @@ const getToken = () => {
 const api = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
-      ? "https://chefs-kiss-api.herokuapp.com/api"
+      ? "https://chefskisscookbook-1a8ad3f4b614.herokuapp.com/api/"
       : "http://localhost:3000/api",
 });
 
