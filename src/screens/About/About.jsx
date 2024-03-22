@@ -17,7 +17,9 @@ Chef Nikoloz Gogoladze, trained in the heart of Georgia's culinary traditions, i
 			</div>
 			<div id="Luke">
 				<h2>Luke Bandeen</h2>
-				<p> Luke is an Software Engineer hailing from London, England. Often finds himself looking for recipes to make something new. He is also in awe of the number of Bookers Michelin stars.</p>
+				<p> 
+				Eleanor Sterling, a product of London's dynamic culinary landscape, is a passionate advocate for cross-cultural cuisine. Inspired by the city's diverse flavors and traditions, Eleanor has become a trailblazer in blending classic British dishes with international nuances. His culinary innovations have not only earned him five Michelin stars but also established him as a leading figure in redefining London's gastronomic identity. With each dish Eleanor meticulously crafts, he offers a unique and unforgettable dining experience, celebrating the fusion of global flavors with local charm. Dive into the culinary world of Chef Sterling and discover the magic of his Michelin-starred creations.
+				</p>
 			</div>
 		</div>
 	);
