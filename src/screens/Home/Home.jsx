@@ -1,5 +1,3 @@
-
-
 import './Home.css'
 import Recipe from '../../components/Recipe/Recipe.jsx';
 
@@ -12,7 +10,7 @@ const Home = (props) => {
           <h1>Chefs Kiss</h1>
           <p>We set out to create a site to be a hub of recipes that can be shared across cultures to connect people and satisfy our tastebuds</p>
         </div>
-	</div> 
+      </div>
   )
 }
 
